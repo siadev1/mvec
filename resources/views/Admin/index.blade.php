@@ -84,7 +84,7 @@
         </div>
     </div><!--end row-->
 
-<div class="row">
+{{-- <div class="row">
     <div class="col-12 col-lg-8 col-xl-8 d-flex">
        <div class="card radius-10 w-100">
         <div class="card-body">
@@ -168,10 +168,10 @@
           </div>
         </div>
     </div>
-   </div><!--End Row-->
+   </div><!--End Row--> --}}
 
 
-   <div class="row row-cols-1 row-cols-lg-3">
+   {{-- <div class="row row-cols-1 row-cols-lg-3">
     <div class="col">
        <div class="card radius-10">
          <div class="card-body">
@@ -220,10 +220,11 @@
          </div>
        </div>
      </div>
-    </div><!--End Row-->
+    </div>
+    <!--End Row--> --}}
 
 
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-12 col-lg-12 col-xl-6">
           <div class="card radius-10">
             <div class="card-body">
@@ -347,9 +348,9 @@
              </div>
            </div>
         </div>
-     </div><!--End Row-->
+     </div><!--End Row--> --}}
 
-     <div class="row">
+     {{-- <div class="row">
         <div class="col-12 col-lg-6 col-xl-4 d-flex">
           <div class="card radius-10 overflow-hidden w-100">
              <div class="card-body">
@@ -464,7 +465,7 @@
               </ul>
            </div>
         </div>
-      </div><!--End Row-->
+      </div><!--End Row--> --}}
 
 
       <div class="card radius-10">
