@@ -12,8 +12,9 @@ class AdminController extends Controller
 {
     public function AdminDashboard(){
 
-
-        return view('admin.index');
+        $id = Auth::user()->id;
+        $adminData = User::find($id);
+        return view('admin.index',compact('adminData'));
     }
 
     public function AdminLogin(){
@@ -60,7 +61,7 @@ class AdminController extends Controller
 
         if(!Hash::check($old_password, Auth::user()->password)){
 
-            return back()->with('error',"old password don't match");
+            return back()->with('error',"old password did'nt match");
         };
         User::whereId(auth()->user()->id)->update([
             'password'=> Hash::make($request->new_password)
