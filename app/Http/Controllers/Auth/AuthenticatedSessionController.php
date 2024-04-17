@@ -40,8 +40,12 @@ class AuthenticatedSessionController extends Controller
         }elseif($request->user()->role === 'user'){
             $url= 'dashboard';
         }
+        $notification = [
+            'message'=> "login Successfull",
+            'alert-type'=>"success"
+        ];
 
-        return redirect()->intended($url);
+        return redirect()->intended($url)->with($notification);
     }
 
     /**

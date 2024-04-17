@@ -1,7 +1,18 @@
 @extends('dashboard')
 @section('user')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+@if(Session('status'))
+    <div class="alert alert-success">
+        {{Session('status')}}
+    
+    </div>
+@elseif(Session('error'))
+    <div class="alert alert-danger">
+        {{Session('error')}}
+    
+    </div>
+@endif
 
 <div class="page-header breadcrumb-wrap">
     <div class="container">
@@ -35,7 +46,10 @@
                                     <a class="nav-link" id="account-detail-tab" data-bs-toggle="tab" href="#account-detail" role="tab" aria-controls="account-detail" aria-selected="true"><i class="fi-rs-user mr-10"></i>Account details</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="page-login.html"><i class="fi-rs-sign-out mr-10"></i>Logout</a>
+                                    <a class="nav-link" id="account-detail-tab" data-bs-toggle="tab" href="#change-password-detail" role="tab" aria-controls="account-detail" aria-selected="true"><i class="fi-rs-user mr-10"></i>Change password</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{route('user.logout')}}"><i class="fi-rs-sign-out mr-10"></i>Logout</a>
                                 </li>
                             </ul>
                         </div>
@@ -198,6 +212,52 @@
                                                     {{-- <label>Confirm Password <span class="required">*</span></label> --}}
                                                     <img id="showImage" src="{{(!empty($UserData->photo)) ? url('upload/user_images/'.$UserData->photo) : url('upload/no_image.jpg')}} " alt="User image"  style="width:100,height:100">
                                                 </div>
+                                                <div class="col-md-12">
+                                                    <button type="submit" class="btn btn-fill-out submit font-weight-bold" name="submit" value="Submit">Save Change</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="change-password-detail" role="tabpanel" aria-labelledby="change-password-tab">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5>Password Details</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <p>Already have an account? <a href="page-login.html">Log in instead!</a></p>
+                                        <form method="post" name="enq" action="{{route('userPassword.update')}}">
+                                            @csrf
+                                            <div class="row">
+                                                {{-- <div class="form-group col-md-6">
+                                                    <label>User Name <span class="required">*</span></label>
+                                                    <input required="" class="form-control" name="username" type="text" value="{{$UserData->username}}" disabled />
+                                                </div> --}}
+                                                {{-- <div class="form-group col-md-6">
+                                                    <label>Full Name <span class="required">*</span></label>
+                                                    <input required="" class="form-control" name="name" value="{{$UserData->name}}" />
+                                                </div> --}}
+                                                <div class="form-group col-md-12">
+                                                    <label>Old password <span class="required">*</span></label>
+                                                    <input type="password" name="old_password" @error('old_password') is-invalid
+
+                                                    @enderror class="form-control" value="" placeholder="Old Password" />
+                                                    @error('old_password')
+                                                        <span class="text-danger">{{$message}}</span>
+                                                    @enderror                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label>New Password<span class="required">*</span></label>
+                                                    <input type="password" name="new_password" @error('new_password') is-invalid
+
+                                                    @enderror class="form-control" value="" placeholder="new Password" />
+                                                    @error('new_password')
+                                                        <span class="text-danger">{{$message}}</span>
+                                                    @enderror                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label>Confirm Password <span class="required">*</span></label>
+                                                    <input required="" class="form-control" name="new_password_confirmation" type="password" />
+                                                </div>                                                                
                                                 <div class="col-md-12">
                                                     <button type="submit" class="btn btn-fill-out submit font-weight-bold" name="submit" value="Submit">Save Change</button>
                                                 </div>
