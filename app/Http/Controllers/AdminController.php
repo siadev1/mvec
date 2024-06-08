@@ -89,4 +89,51 @@ class AdminController extends Controller
         return view('vendor.active_vendor',compact('ActiveVendor'));
 
     }// End Mehtod 
+
+    public function InactiveVendorDetails($id){
+
+        $inactiveVendorDetails = User::findOrFail($id);
+        return view('vendor.inactive_vendor_details',compact('inactiveVendorDetails'));
+
+    }// End Mehtod 
+
+    public function ActiveVendorApprove(Request $request){
+
+        $vendor_id = $request->id;
+        $user = User::findOrFail($vendor_id)->update([
+            'status' => 'active',
+        ]);
+
+        $notification = array(
+            'message' => 'Vendor Activated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('active.vendor')->with($notification);
+
+    }// End Mehtod 
+
+    public function ActiveVendorDetails($id){
+
+        $activeVendorDetails = User::findOrFail($id);
+        return view('vendor.active_vendor_details',compact('activeVendorDetails'));
+
+    }// End Mehtod 
+
+
+    public function InActiveVendorApprove(Request $request){
+
+        $verdor_id = $request->id;
+        $user = User::findOrFail($verdor_id)->update([
+            'status' => 'inactive',
+        ]);
+
+        $notification = array(
+            'message' => 'Vendor Deactivated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('inactive.vendor')->with($notification);
+
+    }
 }
