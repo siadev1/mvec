@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\SubCategoryController;
+
 // {{asset('adminbackend/')}}
 /*
 |--------------------------------------------------------------------------
@@ -60,4 +64,41 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
 });
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
 Route::get('/vendor/login', [VendorController::class, 'VendorLogin'])->name('vendor.login');
+Route::post('vendor/register/store',[VendorController::class, 'vendorRegister'])->name('vendor.register');
 
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::controller(BrandController::Class)->group(function(){
+        Route::get('all/brand', 'AllBrand')->name('all.brand');
+        Route::get('add/brand','AddBrand')->name('add.brand');
+        Route::post('add_brand/store', 'StoreBrand')->name('add.brand.store');
+        Route::get('brand/edit/{id}', 'BrandEdit')->name('brand.edit');
+        Route::post('brand/edit/store/', 'StoreEditBrand')->name('brand.edit.store');
+        Route::get('brand/delete/{id}', 'DeleteBrand')->name('brand.delete');
+    });
+
+    Route::controller(CategoryController::class)->group(function(){
+        Route::get('all/category','AllCategory')->name('all.category');
+        Route::get('add/category','AddCategory')->name('add.category');
+        Route::post('add_category/store', 'StoreCategory')->name('add.category.store');
+        Route::get('category/edit/{id}', 'CategoryEdit')->name('category.edit');
+        Route::post('category/edit/store/', 'StoreEditCategory')->name('category.edit.store');
+        Route::get('category/delete/{id}', 'DeleteCategory')->name('category.delete');
+    });
+
+    Route::controller(SubCategoryController::class)->group(function(){
+        Route::get('all/subcategory','AllSubCategory')->name('all.subCategory');
+        Route::get('add/subcategory','AddSubCategory')->name('add.subCategory');
+        Route::post('add_subcategory/store', 'StoreSubCategory')->name('add.subCategory.store');
+        Route::get('subcategory/edit/{id}', 'subCategoryEdit')->name('subCategory.edit');
+        Route::post('subcategory/edit/store/', 'StoreEditSubCategory')->name('subCategory.edit.store');
+        Route::get('subcategory/delete/{id}', 'DeleteSubCategory')->name('subCategory.delete');
+    });
+
+    Route::controller(AdminController::class)->group(function(){
+        Route::get('/inactive/vendor' , 'InactiveVendor')->name('inactive.vendor');
+        Route::get('/active/vendor' , 'ActiveVendor')->name('active.vendor');
+    
+    });
+    
+    
+});

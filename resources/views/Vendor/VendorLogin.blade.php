@@ -1,4 +1,4 @@
-{{-- <!doctype html>
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -19,7 +19,7 @@
 	<link href="{{asset('adminbackend/assets/css/app.css')}}" rel="stylesheet">
 	<link href="{{asset('adminbackend/assets/css/icons.css')}}" rel="stylesheet">
 	<title>vendor Login</title>
-</head> --}}
+</head>
 
 <body class="bg-login">
 	<!--wrapper-->

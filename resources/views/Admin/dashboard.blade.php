@@ -23,6 +23,7 @@
 	<link rel="stylesheet" href="{{asset('adminbackend/assets/css/dark-theme.css')}}" />
 	<link rel="stylesheet" href="{{asset('adminbackend/assets/css/semi-dark.css')}}" />
 	<link rel="stylesheet" href="{{asset('adminbackend/assets/css/header-colors.css')}}" />
+	<link href="{{asset('adminbackend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet" />
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
 	<title>Admin Dashboard</title>
 </head>
@@ -161,6 +162,14 @@
 	<script src="{{asset('adminbackend/assets/plugins/sparkline-charts/jquery.sparkline.min.js')}}"></script>
 	<script src="{{asset('adminbackend/assets/plugins/jquery-knob/excanvas.js')}}"></script>
 	<script src="{{asset('adminbackend/assets/plugins/jquery-knob/jquery.knob.js')}}"></script>
+	<script src="{{asset('adminbackend/assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
+
+	<script>
+		$(document).ready(function() {
+			$('#example').DataTable();
+		  } );
+	</script>
+
 	  <script>
 		  $(function() {
 			  $(".knob").knob();
@@ -170,7 +179,64 @@
 	<!--app JS-->
 	<script src="{{asset('adminbackend/assets/js/app.js')}}"> </script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
+	<script src="{{ asset('adminbackend/assets/js/validate.min.js') }}"></script>
+     {{-- Brand validation  --}}
+	<script type="text/javascript">
+		$(document).ready(function (){
+			$('#brandForm').validate({
+				rules: {
+					brand_name: {
+						required : true,
+					}, 
+				},
+				messages :{
+					brand_name: {
+						required : 'Please Enter Brand Name',
+					},
+				},
+				errorElement : 'span', 
+				errorPlacement: function (error,element) {
+					error.addClass('invalid-feedback');
+					element.closest('.form-group').append(error);
+				},
+				highlight : function(element, errorClass, validClass){
+					$(element).addClass('is-invalid');
+				},
+				unhighlight : function(element, errorClass, validClass){
+					$(element).removeClass('is-invalid');
+				},
+			});
+		});
+		
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function (){
+			$('#categoryForm').validate({
+				rules: {
+					category_name: {
+						required : true,
+					}, 
+				},
+				messages :{
+					category_name: {
+						required : 'Please Enter category Name',
+					},
+				},
+				errorElement : 'span', 
+				errorPlacement: function (error,element) {
+					error.addClass('invalid-feedback');
+					element.closest('.form-group').append(error);
+				},
+				highlight : function(element, errorClass, validClass){
+					$(element).addClass('is-invalid');
+				},
+				unhighlight : function(element, errorClass, validClass){
+					$(element).removeClass('is-invalid');
+				},
+			});
+		});
+		
+	</script>
 <script>
  @if(Session::has('message'))
  var type = "{{ Session::get('alert-type','info') }}"
@@ -193,6 +259,9 @@
  }
  @endif 
 </script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+ <script src="{{ asset('adminbackend/assets/js/code.js') }}"></script>
 </body>
 
 </html>

@@ -78,4 +78,15 @@ class AdminController extends Controller
 
         return redirect('/admin/login');
     }
+    public function InactiveVendor(){
+        $inActiveVendor = User::where('status','inactive')->where('role','vendor')->latest()->get();
+        return view('vendor.inactive_vendor',compact('inActiveVendor'));
+
+    }// End Mehtod 
+
+    public function ActiveVendor(){
+        $ActiveVendor = User::where('status','active')->where('role','vendor')->latest()->get();
+        return view('vendor.active_vendor',compact('ActiveVendor'));
+
+    }// End Mehtod 
 }

@@ -8,6 +8,34 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 class VendorController extends Controller
 {
+    public function signUp(){
+
+        return view('auth.vendor_signUp');
+    }
+    public function vendorRegister(Request $request){
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'password' => ['required', 'confirmed'],
+        ]);
+
+        $user = User::insert([
+            'name' => $request->name,
+            'username'=>$request->username,
+            'email' => $request->email,
+            'phone'=>$request->phone,
+            'vendor_join'=>$request->vendor_join,
+            'password' => Hash::make($request->password),
+            'role'=>'vendor',
+            'status'=>'inactive'
+        ]);
+
+        $notification = [
+            'message'=> "Vendor Registered Successfully",
+            'alert-type'=>"success"
+        ];
+        return  redirect()->route('vendor.login')->with($notification);
+    }
     public function VendorLogin(){
         return view('vendor.VendorLogin');
     }
