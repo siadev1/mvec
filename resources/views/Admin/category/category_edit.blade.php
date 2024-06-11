@@ -94,7 +94,7 @@
                                         <h6 class="mb-0">Category Image</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <input type="file" name="Category_image" class="form-control" id="image" />
+                                        <input type="file" name="category_image" class="form-control" id="image" />
                                     </div>
                                 </div>
                                 <div class="row mb-3">

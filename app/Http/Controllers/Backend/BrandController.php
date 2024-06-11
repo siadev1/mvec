@@ -25,7 +25,7 @@ class BrandController extends Controller
         ]);
         $image = $request->file('brand_image');
         $name_gen= hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-        // Image::make($image)->resize(300,300)->save('upload/brand_images/'.$name_gen);
+        Image::make($image)->resize(300,300)->save('upload/brand_images/'.$name_gen);
         $image->move('upload/brand_images/', $name_gen);
         $url = 'upload/brand_images/'.$name_gen;
         Brand::insert([
@@ -57,7 +57,7 @@ class BrandController extends Controller
             $image = $request->file('brand_image');
 
             $name_gen= hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-            // Image::make($image)->resize(300,300)->save('upload/brand_images/'.$name_gen);
+            Image::make($image)->resize(300,300)->save('upload/brand_images/'.$name_gen);
             $image->move('upload/brand_images/', $name_gen);
             $url = 'upload/brand_images/'.$name_gen;
             if(file_exists($old_image)){
@@ -94,7 +94,7 @@ class BrandController extends Controller
 
             unlink($brand_image);
         }
-        // Brand::findOrFail($id)->delete();
+        Brand::findOrFail($id)->delete();
         $notification = [
             'message'=> "Brand Delete Successfull",
             'alert-type'=>"success"

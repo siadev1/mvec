@@ -58,7 +58,13 @@ class AuthenticatedSessionController extends Controller
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
-
-        return redirect('/');
+        if(Auth::user()->role='admin'){
+            return redirect()->route('admin.login');
+        }elseif (Auth::user()->role='vendor') {
+            return redirect()->route('vendor.login');
+        }else {
+            # code...
+            return redirect('/');
+        }
     }
 }

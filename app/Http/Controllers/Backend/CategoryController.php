@@ -5,6 +5,7 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use Image;
 
 class CategoryController extends Controller
 {
@@ -56,7 +57,7 @@ class CategoryController extends Controller
             $image = $request->file('category_image');
 
             $name_gen= hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-            // Image::make($image)->resize(300,300)->save('upload/category_images/'.$name_gen);
+            Image::make($image)->resize(300,300)->save('upload/category_images/'.$name_gen);
             $image->move('upload/category_images/', $name_gen);
             $url = 'upload/category_images/'.$name_gen;
             if(file_exists($old_image)){
@@ -71,7 +72,7 @@ class CategoryController extends Controller
                 'message'=> "Category update Successfull",
                 'alert-type'=>"success"
             ];
-            return redirect()->url('all.category')->with($notification);
+            return redirect()->route('all.category')->with($notification);
         }else{
 
             Category::whereId($category_id)->update([

@@ -5,7 +5,7 @@
 
 <div class="page-content">
 
-  @if(Auth::user()->status === 'akctive')
+  @if(Auth::user()->status === 'active')
 	<h4>Vendor Account is <span class="text-success">Active</span> </h4>
 	@else
 	<h4>Vendor Account is <span class="text-danger">InActive</span> </h4>
