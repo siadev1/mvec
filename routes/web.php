@@ -14,6 +14,7 @@ use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Frontend\CartController;
 
 
 // {{asset('adminbackend/')}}
@@ -31,7 +32,15 @@ use App\Http\Controllers\Frontend\IndexController;
 Route::get('/', function () {
     return view('frontend.index');
 });
+Route::get('/', [IndexController::class, 'Index']);
+Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
+Route::get('/vendor/details/{id}', [IndexController::class, 'VendorDetails'])->name('vendor.details');
+Route::get('/vendor/all', [IndexController::class, 'VendorAll'])->name('vendor.all');
+Route::get('/product/category/{id}/{slug}', [IndexController::class, 'CatWiseProduct']);
+Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'SubCatWiseProduct']);
+// Product View Modal With Ajax
 
+Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
