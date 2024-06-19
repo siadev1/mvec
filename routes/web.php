@@ -38,6 +38,11 @@ Route::get('/vendor/details/{id}', [IndexController::class, 'VendorDetails'])->n
 Route::get('/vendor/all', [IndexController::class, 'VendorAll'])->name('vendor.all');
 Route::get('/product/category/{id}/{slug}', [IndexController::class, 'CatWiseProduct']);
 Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'SubCatWiseProduct']);
+Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
+Route::get('/product/mini/cart', [CartController::class, 'AddMiniCart']);
+Route::get('/minicart/product/remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
+/// Add to cart store data For Product Details Page 
+Route::post('/dcart/data/store/{id}', [CartController::class, 'AddToCartDetails']);
 // Product View Modal With Ajax
 
 Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);

@@ -1,21 +1,21 @@
 <div class="modal fade custom-modal" id="quickViewModal" tabindex="-1" aria-labelledby="quickViewModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-6 col-sm-12 col-xs-12 mb-md-0 mb-sm-5">
-                        <div class="detail-gallery">
-                            {{-- <span class="zoom-icon"><i class="fi-rs-search"></i></span> --}}
-                            <!-- MAIN SLIDES -->
-                            <img src=" " alt="product image" id="pimage" />
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeModal"></button>        
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12 col-xs-12 mb-md-0 mb-sm-5">
+                            <div class="detail-gallery">
+                                {{-- <span class="zoom-icon"><i class="fi-rs-search"></i></span> --}}
+                                <!-- MAIN SLIDES -->
+                                <img src=" " alt="product image" id="pimage" />
+                            </div>
+                            <!-- End Gallery -->
                         </div>
-                        <!-- End Gallery -->
-                    </div>
-                    <div class="col-md-6 col-sm-12 col-xs-12">
-                        <div class="detail-info pr-30 pl-30">
-                            <h5 class="title-detail"><a href=" " class="text-heading" id="pname"> </a></h5>
-                    <br>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="detail-info pr-30 pl-30">
+                                <h5 class="title-detail"><a href=" " class="text-heading" id="pname"> </a></h5>
+                        <br>
 
                     <div class="attr-detail attr-size mb-30" id="sizeArea">
 <strong class="mr-10" style="width:60px;">Size : </strong>
@@ -42,10 +42,11 @@
 
      <div class="clearfix product-price-cover">
          <div class="product-price primary-color float-left">
-            <span class="current-price text-brand" id="pprice">$</span>
-            <span> 
-                <span class="old-price font-md ml-15" id="oldprice">$ </span>
-             </span>
+            <span class="current-price text-brand">$</span>
+            <span class="current-price text-brand" id="pprice"> </span>
+            <span class="old-price font-md ml-15">$ </span>
+            <span class="old-price font-md ml-15" id="oldprice">  </span>
+
          </div>
      </div>
      <div class="detail-extralink mb-30">
@@ -56,7 +57,7 @@
          </div>
          <div class="product-extra-link2">
             <input type="hidden" id="product_id">
-            <button type="submit" class="button button-add-to-cart" onclick="addToCart()"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
+            <button type="submit" class="button button-add-to-cart" onclick="addToCart()"><i class="fi-rs-shopping-cart"></i>Add to caart</button>
         </div>
     </div>
 
