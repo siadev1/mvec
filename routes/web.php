@@ -16,6 +16,7 @@ use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\User\WishlistController;
+use App\Http\Controllers\User\CompareController;
 
 
 // {{asset('adminbackend/')}}
@@ -180,6 +181,13 @@ Route::middleware(['auth','role:user'])->group(function() {
     
    
    }); 
+
+   // Compare All Route 
+    Route::controller(CompareController::class)->group(function(){
+        Route::get('/compare' , 'AllCompare')->name('compare');
+        Route::get('/get-compare-product' , 'GetCompareProduct');
+        Route::get('/compare-remove/{id}' , 'CompareRemove');
+    });
    
    
    }); // end group middleware
@@ -201,3 +209,6 @@ Route::post('/dcart/data/store/{id}', [CartController::class, 'AddToCartDetails'
 // Product View Modal With Ajax
 
 Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
+
+/// Add to Compare 
+Route::post('/add-to-compare/{product_id}', [CompareController::class, 'AddToCompare']);
