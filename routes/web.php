@@ -17,6 +17,7 @@ use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\CompareController;
+use App\Http\Controllers\Backend\CouponController;
 
 
 // {{asset('adminbackend/')}}
@@ -166,6 +167,17 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/delete/banner/{id}' , 'DeleteBanner')->name('delete.banner');
         
     });
+
+    // Coupon All Route
+    Route::controller(CouponController::class)->group(function(){
+        Route::get('/all/coupon' , 'AllCoupon')->name('all.coupon');
+        Route::get('/add/coupon' , 'AddCoupon')->name('add.coupon');
+        Route::post('/store/coupon' , 'StoreCoupon')->name('store.coupon');
+        Route::get('/edit/coupon/{id}' , 'EditCoupon')->name('edit.coupon');
+        Route::post('/update/coupon' , 'UpdateCoupon')->name('update.coupon');
+        Route::get('/delete/coupon/{id}' , 'DeleteCoupon')->name('delete.coupon');
+    
+    });  
     
 });
 
@@ -188,6 +200,16 @@ Route::middleware(['auth','role:user'])->group(function() {
         Route::get('/get-compare-product' , 'GetCompareProduct');
         Route::get('/compare-remove/{id}' , 'CompareRemove');
     });
+
+    // Cart All Route 
+    Route::controller(CartController::class)->group(function(){
+    Route::get('/mycart' , 'MyCart')->name('mycart');
+    Route::get('/get-cart-product' , 'GetCartProduct');
+    Route::get('/cart-decrement/{rowId}' , 'CartDecrement');
+    Route::get('/cart-increment/{rowId}' , 'CartIncrement');
+
+
+});
    
    
    }); // end group middleware
