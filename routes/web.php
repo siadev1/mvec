@@ -238,18 +238,18 @@ Route::middleware(['auth','role:user'])->group(function() {
         Route::get('/compare-remove/{id}' , 'CompareRemove');
     });
 
-    // Cart All Route 
-    Route::controller(CartController::class)->group(function(){
-    Route::get('/mycart' , 'MyCart')->name('mycart');
-    Route::get('/get-cart-product' , 'GetCartProduct');
-    Route::get('/cart-decrement/{rowId}' , 'CartDecrement');
-    Route::get('/cart-increment/{rowId}' , 'CartIncrement');
+    
+    
+}); // end group middleware
+// Cart All Route 
+Route::controller(CartController::class)->group(function(){
+Route::get('/mycart' , 'MyCart')->name('mycart');
+Route::get('/get-cart-product' , 'GetCartProduct');
+Route::get('/cart-decrement/{rowId}' , 'CartDecrement');
+Route::get('/cart-increment/{rowId}' , 'CartIncrement');
 
 
 });
-   
-   
-   }); // end group middleware
 Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
 Route::get('/', [IndexController::class, 'Index']);
 Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
@@ -271,3 +271,9 @@ Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax
 
 /// Add to Compare 
 Route::post('/add-to-compare/{product_id}', [CompareController::class, 'AddToCompare']);
+
+/// Frontend Coupon Option
+Route::post('/coupon-apply', [CartController::class, 'CouponApply']);
+
+Route::get('/coupon-calculation', [CartController::class, 'CouponCalculation']);
+Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);

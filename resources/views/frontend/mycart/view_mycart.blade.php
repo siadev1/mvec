@@ -63,8 +63,8 @@
 
     <input class="font-medium mr-15 coupon" id="coupon_name" placeholder="Enter Your Coupon">
 
-  <a type="submit" onclick="applyCoupon()" class="btn btn-success"><i class="fi-rs-label mr-10"></i>Apply</a>
-                </div>
+    <button  onclick="applyCoupon()" class="btn btn-success"><i class="fi-rs-label mr-10"></i>Apply</button>
+</div>
             </form>
         </div>
      
