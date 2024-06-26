@@ -19,6 +19,8 @@ use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\CompareController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\ShippingAreaController;
+use App\Http\Controllers\User\CheckoutController;
+use App\Http\Controllers\User\StripeController;
 
 
 // {{asset('adminbackend/')}}
@@ -89,14 +91,10 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
     
 
 
-});
+    });
 
 
 });
-Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login')->middleware(RedirectIfAuthenticated::class);;
-Route::get('/vendor/login', [VendorController::class, 'VendorLogin'])->name('vendor.login')->middleware(RedirectIfAuthenticated::class);;
-Route::post('vendor/register/store',[VendorController::class, 'vendorRegister'])->name('vendor.register');
-
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::controller(BrandController::Class)->group(function(){
         Route::get('all/brand', 'AllBrand')->name('all.brand');
@@ -229,19 +227,46 @@ Route::middleware(['auth','role:user'])->group(function() {
        Route::get('/wishlist-remove/{id}' , 'WishlistRemove');
     
    
-   }); 
+}); 
 
    // Compare All Route 
-    Route::controller(CompareController::class)->group(function(){
-        Route::get('/compare' , 'AllCompare')->name('compare');
-        Route::get('/get-compare-product' , 'GetCompareProduct');
-        Route::get('/compare-remove/{id}' , 'CompareRemove');
-    });
+Route::controller(CompareController::class)->group(function(){
+    Route::get('/compare' , 'AllCompare')->name('compare');
+    Route::get('/get-compare-product' , 'GetCompareProduct');
+    Route::get('/compare-remove/{id}' , 'CompareRemove');
+});
+
+// Checkout All Route 
+Route::controller(CheckoutController::class)->group(function(){
+    Route::get('/district-get/ajax/{division_id}' , 'DistrictGetAjax');
+    Route::get('/state-get/ajax/{district_id}' , 'StateGetAjax');
+    Route::post('/checkout/store' , 'CheckoutStore')->name('checkout.store');
+  
+
+}); 
+
+
+ // Stripe All Route 
+Route::controller(StripeController::class)->group(function(){
+    Route::post('/stripe/order' , 'StripeOrder')->name('stripe.order');
+    Route::post('/cash/order' , 'CashOrder')->name('cash.order');
+  
+
+}); 
 
     
     
-}); // end group middleware
-// Cart All Route 
+});
+ // end group middleware
+
+Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login')->middleware(RedirectIfAuthenticated::class);;
+Route::get('/vendor/login', [VendorController::class, 'VendorLogin'])->name('vendor.login')->middleware(RedirectIfAuthenticated::class);;
+Route::post('vendor/register/store',[VendorController::class, 'vendorRegister'])->name('vendor.register');
+// Checkout Page Route 
+Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checkout');
+
+
+ // Cart All Route 
 Route::controller(CartController::class)->group(function(){
 Route::get('/mycart' , 'MyCart')->name('mycart');
 Route::get('/get-cart-product' , 'GetCartProduct');

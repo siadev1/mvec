@@ -9,6 +9,8 @@ use App\Models\Coupon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+use App\Models\ShipDivision;
 
 class CartController extends Controller
 {
@@ -29,6 +31,7 @@ class CartController extends Controller
                     'image' => $product->product_thambnail,
                     'color' => $request->color,
                     'size' => $request->size,
+                    'vendor' => $request->vendor,
                 ],
             ]);
 
@@ -47,6 +50,7 @@ class CartController extends Controller
                     'image' => $product->product_thambnail,
                     'color' => $request->color,
                     'size' => $request->size,
+                    'vendor' => $request->vendor,
                 ],
             ]);
 
@@ -73,6 +77,7 @@ class CartController extends Controller
                     'image' => $product->product_thambnail,
                     'color' => $request->color,
                     'size' => $request->size,
+                    'vendor' => $request->vendor,
                 ],
             ]);
 
@@ -91,6 +96,7 @@ class CartController extends Controller
                     'image' => $product->product_thambnail,
                     'color' => $request->color,
                     'size' => $request->size,
+                    'vendor' => $request->vendor,
                 ],
             ]);
 
