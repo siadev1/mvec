@@ -27,7 +27,7 @@
         <div class="row">
             <div class="col-lg-12 m-auto">
                 <div class="row">
-                    <div class="col-md-3">
+                    {{-- <div class="col-md-3">
                         <div class="dashboard-menu">
                             <ul class="nav flex-column" role="tablist">
                                 <li class="nav-item">
@@ -53,7 +53,8 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                    </div> --}}
+                    @include('frontend.body.dashboard_sidebar_menu')
                     <div class="col-md-9">
                         <div class="tab-content account dashboard-content pl-50">
                             <div class="tab-pane fade active show" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">

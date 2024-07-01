@@ -28,6 +28,11 @@ use App\Http\Controllers\Backend\ReturnController;
 use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\ActiveUserController;
 use App\Http\Controllers\Backend\BlogController;
+use App\Http\Controllers\User\ReviewController;
+use App\Http\Controllers\Backend\SiteSettingController;
+use App\Http\Controllers\Backend\RoleController;
+
+
 // {{asset('adminbackend/')}}
 /*
 |--------------------------------------------------------------------------
@@ -112,6 +117,12 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
  
     });
 
+    Route::controller(ReviewController::class)->group(function(){
+
+        Route::get('/vendor/all/review' , 'VendorAllReview')->name('vendor.all.review');
+       
+       });
+
 
 });
 
@@ -168,6 +179,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/product/inactive/{id}' , 'ProductInactive')->name('product.inactive');
         Route::get('/product/active/{id}' , 'ProductActive')->name('product.active');
         Route::get('/delete/product/{id}' , 'ProductDelete')->name('delete.product');
+        // For Product Stock
+        Route::get('/product/stock' , 'ProductStock')->name('product.stock');
+    
+        
     });
     
     Route::controller(SliderController::class)->group(function(){
@@ -311,10 +326,90 @@ Route::controller(BlogController::class)->group(function(){
         Route::get('/blog' , 'AllBlog')->name('home.blog');  
         Route::get('/post/details/{id}/{slug}' , 'BlogDetails'); 
         Route::get('/post/category/{id}/{slug}' , 'BlogPostCategory'); 
-    
+        
     
     });
 
+    // Admin Reviw All Route 
+    Route::controller(ReviewController::class)->group(function(){
+
+        Route::get('/pending/review' , 'PendingReview')->name('pending.review');
+        Route::get('/review/approve/{id}' , 'ReviewApprove')->name('review.approve');
+        Route::get('/publish/review' , 'PublishReview')->name('publish.review'); 
+        Route::get('/review/delete/{id}' , 'ReviewDelete')->name('review.delete');
+    });
+
+    // Site Setting All Route 
+    Route::controller(SiteSettingController::class)->group(function(){
+
+        Route::get('/site/setting' , 'SiteSetting')->name('site.setting');
+        Route::post('/site/setting/update' , 'SiteSettingUpdate')->name('site.setting.update');
+    
+        Route::get('/seo/setting' , 'SeoSetting')->name('seo.setting');
+        Route::post('/seo/setting/update' , 'SeoSettingUpdate')->name('seo.setting.update');
+    });
+
+    // Permission All Route 
+    Route::controller(RoleController::class)->group(function(){
+
+        Route::get('/all/permission' , 'AllPermission')->name('all.permission');
+        Route::get('/add/permission' , 'AddPermission')->name('add.permission');
+        Route::post('/store/permission' , 'StorePermission')->name('store.permission');
+        Route::get('/edit/permission/{id}' , 'EditPermission')->name('edit.permission');
+    
+        Route::post('/update/permission' , 'UpdatePermission')->name('update.permission');
+    
+        Route::get('/delete/permission/{id}' , 'DeletePermission')->name('delete.permission');
+    
+    });
+
+   
+   // Roles All Route 
+   Route::controller(RoleController::class)->group(function(){
+   
+        Route::get('/all/roles' , 'AllRoles')->name('all.roles');
+        Route::get('/add/roles' , 'AddRoles')->name('add.roles');
+        Route::post('/store/roles' , 'StoreRoles')->name('store.roles');
+        Route::get('/edit/roles/{id}' , 'EditRoles')->name('edit.roles');
+    
+        Route::post('/update/roles' , 'UpdateRoles')->name('update.roles');
+    
+        Route::get('/delete/roles/{id}' , 'DeleteRoles')->name('delete.roles');
+   
+        // add role permission 
+   
+        Route::get('/add/roles/permission' , 'AddRolesPermission')->name('add.roles.permission');
+    
+        Route::post('/role/permission/store' , 'RolePermissionStore')->name('role.permission.store');
+        
+        Route::get('/all/roles/permission' , 'AllRolesPermission')->name('all.roles.permission');
+    
+        Route::get('/admin/edit/roles/{id}' , 'AdminRolesEdit')->name('admin.edit.roles');
+    
+        Route::post('/admin/roles/update/{id}' , 'AdminRolesUpdate')->name('admin.roles.update');
+    
+        Route::get('/admin/delete/roles/{id}' , 'AdminRolesDelete')->name('admin.delete.roles');
+   
+    });
+   
+   
+   
+   // Admin User All Route 
+   Route::controller(AdminController::class)->group(function(){
+   
+        Route::get('/all/admin' , 'AllAdmin')->name('all.admin');
+        Route::get('/add/admin' , 'AddAdmin')->name('add.admin');
+        Route::post('/admin/user/store' , 'AdminUserStore')->name('admin.user.store');
+    
+        Route::get('/edit/admin/role/{id}' , 'EditAdminRole')->name('edit.admin.role');
+    
+        Route::post('/admin/user/update/{id}' , 'AdminUserUpdate')->name('admin.user.update');
+        Route::get('/delete/admin/role/{id}' , 'DeleteAdminRole')->name('delete.admin.role');
+   
+   });
+
+    
+    
 
 
 
@@ -376,6 +471,13 @@ Route::middleware(['auth','role:user'])->group(function() {
         Route::post('/order/tracking' , 'OrderTracking')->name('order.tracking');
     });
 
+    // Review Post All Route 
+    Route::controller(ReviewController::class)->group(function(){
+
+        Route::post('/store/review' , 'StoreReview')->name('store.review'); 
+       
+       });
+
 
     
     
@@ -407,16 +509,23 @@ Route::get('/cart-increment/{rowId}' , 'CartIncrement');
 
 
 });
-Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
-Route::get('/', [IndexController::class, 'Index']);
-Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
-Route::get('/vendor/details/{id}', [IndexController::class, 'VendorDetails'])->name('vendor.details');
-Route::get('/vendor/all', [IndexController::class, 'VendorAll'])->name('vendor.all');
-Route::get('/product/category/{id}/{slug}', [IndexController::class, 'CatWiseProduct']);
-Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'SubCatWiseProduct']);
-Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
-Route::get('/product/mini/cart', [CartController::class, 'AddMiniCart']);
-Route::get('/minicart/product/remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
+// Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
+Route::controller(IndexController::class)->group(function(){
+    Route::get('/',  'Index');
+    Route::get('/product/details/{id}/{slug}',  'ProductDetails');
+    Route::get('/vendor/details/{id}',  'VendorDetails')->name('vendor.details');
+    Route::get('/vendor/all',  'VendorAll')->name('vendor.all');
+    Route::get('/product/category/{id}/{slug}',  'CatWiseProduct');
+    Route::get('/product/subcategory/{id}/{slug}',  'SubCatWiseProduct');
+    Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
+    Route::get('/product/mini/cart', [CartController::class, 'AddMiniCart']);
+    Route::get('/minicart/product/remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
+    Route::get('/product/view/modal/{id}',  'ProductViewAjax');
+    // search All route
+    Route::post('/search' , 'ProductSearch')->name('product.search');
+    Route::post('/search-product' , 'SearchProduct');
+   
+   });
 
 
 
@@ -424,7 +533,6 @@ Route::get('/minicart/product/remove/{rowId}', [CartController::class, 'RemoveMi
 Route::post('/dcart/data/store/{id}', [CartController::class, 'AddToCartDetails']);
 // Product View Modal With Ajax
 
-Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
 
 /// Add to Compare 
 Route::post('/add-to-compare/{product_id}', [CompareController::class, 'AddToCompare']);

@@ -98,7 +98,7 @@ class AllUserController extends Controller
         $track = Order::where('invoice_no',$invoice)->first();
 
         if ($track) {
-           return view('frontend.traking.track_order',compact('track'));
+           return view('frontend.tracking.track_order',compact('track'));
 
         } else{
 

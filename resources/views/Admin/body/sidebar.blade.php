@@ -258,20 +258,92 @@
         </li>
 
         <li>
-            <a class="has-arrow" href="javascript:;">
-                <div class="parent-icon"> <i class="bx bx-donate-blood"></i>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-category"></i>
                 </div>
-                <div class="menu-title">Icons</div>
+                <div class="menu-title">Review Manage</div>
             </a>
             <ul>
-                <li> <a href="icons-line-icons.html"><i class="bx bx-right-arrow-alt"></i>Line Icons</a>
+                <li> <a href="{{ route('pending.review') }}"><i class="bx bx-right-arrow-alt"></i>Pending Review</a>
                 </li>
-                <li> <a href="icons-boxicons.html"><i class="bx bx-right-arrow-alt"></i>Boxicons</a>
+    
+                    <li> <a href="{{ route('admin.blog.post') }}"><i class="bx bx-right-arrow-alt"></i>Publish Review</a>
                 </li>
-                <li> <a href="icons-feather-icons.html"><i class="bx bx-right-arrow-alt"></i>Feather Icons</a>
-                </li>
+    
+    
             </ul>
         </li>
+
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-category"></i>
+                </div>
+                <div class="menu-title">Setting Manage</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('site.setting') }}"><i class="bx bx-right-arrow-alt"></i>Site Setting</a>
+                </li>
+    
+                    <li> <a href="{{ route('publish.review') }}"><i class="bx bx-right-arrow-alt"></i>Publish Review</a>
+                </li>
+    
+    
+            </ul>
+        </li>
+
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-category"></i>
+                </div>
+                <div class="menu-title">Stock Manage</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('product.stock') }}"><i class="bx bx-right-arrow-alt"></i>Product Stock</a>
+                </li>
+    
+    
+    
+    
+            </ul>
+        </li>
+
+        <li class="menu-label">Roles And Permission</li>
+				<li>
+					<a class="has-arrow" href="javascript:;">
+						<div class="parent-icon"><i class="lni lni-users"></i>
+						</div>
+						<div class="menu-title">Role & Permission</div>
+					</a>
+					<ul>
+						<li> <a href="{{ route('all.permission') }}"><i class="bx bx-right-arrow-alt"></i>All Permission</a>
+						</li>
+						<li> <a href="{{ route('all.roles') }}"><i class="bx bx-right-arrow-alt"></i>All Roles</a>
+						</li>
+
+						<li> <a href="{{ route('add.roles.permission') }}"><i class="bx bx-right-arrow-alt"></i>Roles in Permission</a>
+						</li>
+
+						<li> <a href="{{ route('all.roles.permission') }}"><i class="bx bx-right-arrow-alt"></i>All Roles in Permission</a>
+						</li>
+					 
+					</ul>
+				</li>
+
+                <li>
+					<a class="has-arrow" href="javascript:;">
+						<div class="parent-icon"><i class="lni lni-user"></i>
+						</div>
+						<div class="menu-title">Admin Manage </div>
+					</a>
+					<ul>
+						<li> <a href="{{ route('all.admin') }}"><i class="bx bx-right-arrow-alt"></i>All Admin</a>
+						</li>
+						<li> <a href="{{ route('add.admin') }}"><i class="bx bx-right-arrow-alt"></i>Add Admin</a>
+						</li>
+ 
+					 
+					</ul>
+				</li>
         {{-- <li class="menu-label">Forms & Tables</li>
         <li>
             <a class="has-arrow" href="javascript:;">
