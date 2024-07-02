@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Notifications\VendorRegNotification;
+use Illuminate\Support\Facades\Notification;
+
 class VendorController extends Controller
 {
     public function signUp(){
@@ -18,6 +21,8 @@ class VendorController extends Controller
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed'],
         ]);
+
+        $vuser = User::where('role','admin')->get();
 
         $user = User::insert([
             'name' => $request->name,
@@ -34,6 +39,7 @@ class VendorController extends Controller
             'message'=> "Vendor Registered Successfully",
             'alert-type'=>"success"
         ];
+        Notification::send($vuser, new VendorRegNotification($request));
         return  redirect()->route('vendor.login')->with($notification);
     }
     public function VendorLogin(){

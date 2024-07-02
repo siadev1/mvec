@@ -1,4 +1,30 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+This is an Ecommerce web application that involves customer, vendor and admin.
+Different vendor can register on the app and display product available for sale on the app, upon approval of the the admin the products are published and made available for other users(consumers) to see and choose their choice of product to pruchase. 
+
+Apps functionality:
+    the three main category of users and aht they can do-:
+
+    Admin-: An admin controls the in flow of data coming in and out of the application.
+    The admin can CRUD(add,retrieve,edit and delete) products meaning the admin can add new product, edit existing product, retrive and manage products , and delete product. also they can create coupons, give discounts, approve and manage vendors,approve and verify vendors product, manage orders from start to finish and generate invoice pdf for each order.  They also manage the stock system on the app. 
+    lastly there are different admins each with their own limitations
+
+
+    Vendor-:A vendor can add product and wait for admin approval, after the approval products can be managed by the vendors and see orders made for each of their products.
+
+    Consumers-: A consumer makes an order of their preferred product, they can order,track and return products if not satisfied. 
+
+
+
+
+During the course of this project the following skills were acquired:
+1) database design -: designing an efficient database system using the required relationship among tables
+2) use of laravel blade template.
+3) getting a pdf format
+4) using stripe as payment gateway
+5) using cache to check active and non-active users 
+6) A rating and review system that works
+
+<!-- <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
 <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
@@ -9,7 +35,8 @@
 
 ## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Laravel i
+s a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
 - [Simple, fast routing engine](https://laravel.com/docs/routing).
 - [Powerful dependency injection container](https://laravel.com/docs/container).
@@ -63,4 +90,4 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT). -->

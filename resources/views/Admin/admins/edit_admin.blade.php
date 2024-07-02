@@ -86,7 +86,7 @@
 
 <option selected="">Open this select menu</option>
 @foreach($roles as $role)
-<option value="{{ $role->id }}" {{ $user->hasRole($role->name) ? 'selected' : '' }} >{{ $role->name }}</option>
+<option value="{{ $role->name }}" {{ $user->hasRole($role->name) ? 'selected' : '' }} >{{ $role->name }}</option>
  @endforeach
 					</select>
 				</div>
@@ -99,6 +99,9 @@
 				<div class="col-sm-3"></div>
 				<div class="col-sm-9 text-secondary">
 					<input type="submit" class="btn btn-primary px-4" value="Save Changes" />
+					{{-- @php
+					dd(Auth::user()->can('brand.menu'))
+					@endphp --}}
 				</div>
 			</div>
 		</div>

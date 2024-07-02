@@ -148,12 +148,12 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     });
 
     Route::controller(SubCategoryController::class)->group(function(){
-        Route::get('all/subcategory','AllSubCategory')->name('all.subCategory');
-        Route::get('add/subcategory','AddSubCategory')->name('add.subCategory');
-        Route::post('add_subcategory/store', 'StoreSubCategory')->name('add.subCategory.store');
-        Route::get('subcategory/edit/{id}', 'subCategoryEdit')->name('subCategory.edit');
-        Route::post('subcategory/edit/store/', 'StoreEditSubCategory')->name('subCategory.edit.store');
-        Route::get('subcategory/delete/{id}', 'DeleteSubCategory')->name('subCategory.delete');
+        Route::get('all/subcategory','AllSubCategory')->name('all.subcategory');
+        Route::get('add/subcategory','AddSubCategory')->name('add.subcategory');
+        Route::post('add_subcategory/store', 'StoreSubCategory')->name('add.subcategory.store');
+        Route::get('subcategory/edit/{id}', 'subCategoryEdit')->name('subcategory.edit');
+        Route::post('subcategory/edit/store/', 'StoreEditSubCategory')->name('subcategory.edit.store');
+        Route::get('subcategory/delete/{id}', 'DeleteSubCategory')->name('subcategory.delete');
         Route::get('/subcategory/ajax/{category_id}' , 'GetSubCategory');
     });
 
