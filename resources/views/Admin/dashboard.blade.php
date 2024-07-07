@@ -167,21 +167,21 @@
 	<script src="{{asset('adminbackend/assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
 
 	<script>
+		$(function() {
+			$(".knob").knob();
+		});
+	</script>
+	<script src="{{asset('adminbackend/assets/js/index.js')}}"></script>
+	<script src="{{ asset('adminbackend/assets/js/validate.min.js') }}"></script>
+	<script>
 		$(document).ready(function() {
 			$('#example').DataTable();
 		  } );
 	</script>
 
-	  <script>
-		  $(function() {
-			  $(".knob").knob();
-		  });
-	  </script>
-	  <script src="{{asset('adminbackend/assets/js/index.js')}}"></script>
 	<!--app JS-->
 	<script src="{{asset('adminbackend/assets/js/app.js')}}"> </script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-	<script src="{{ asset('adminbackend/assets/js/validate.min.js') }}"></script>
      {{-- Brand validation  --}}
 	<script type="text/javascript">
 		$(document).ready(function (){
